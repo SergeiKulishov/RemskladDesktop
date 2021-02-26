@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,11 @@ namespace RemskladDesktop
             InitializeComponent();
         }
 
-        private void phonesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<Datum> phones = Repository.GetAccumulatorData();
         }
     }
 }
