@@ -17,27 +17,21 @@
             </LinearGradientBrush>
         </Grid.Background>
         <ScrollViewer Margin="164,114,0,0" >
-            <ListView x:Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" SelectionChanged="phonesList_SelectionChanged" FontWeight="Normal" Background="White" Foreground="#FF080808" Height="auto" Width="auto" >
-                <ListView.Resources>
-                    <col:ArrayList x:Key="phones">
-                        <local:Phone Title="Дисплейный модуль iPhone 6S" Company="Apple" Price="54990" />
-                        <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                        <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                        <local:Phone Title = "Galaxy Edge" Company = "Samsung" Price = "45670" />
-                    </col:ArrayList>
-                </ListView.Resources>
+            <ListView x:Name="ItemList" FontWeight="Normal" Background="White" Foreground="#FF080808" Height="auto" Width="auto" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Title}" Width="auto" Header="Модель"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Company}" Width="auto" Header="Компания"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="auto" Header="Цена"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="auto" Header="Наименование"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="149"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="149"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="149"/>
+        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums"/>
+        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig"/>
+        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy"/>
         <TextBlock Text="RemSklad" TextWrapping="Wrap" Margin="298,10,188,337" FontSize="60" Foreground="#FFB6B6B6"/>
+        <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton"/>
+        <Button Content="Создать БД" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton"/>
     </Grid>
 </Window>
