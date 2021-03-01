@@ -24,7 +24,7 @@ namespace RemskladDesktop
                 allArticles.Add(accum);
             }
 
-            foreach (var disp in articlesOfDisplayOrig)
+            foreach (var disp in articlesOfDisplayOrig) { 
 
                 allArticles.Add(disp);
             }
@@ -77,9 +77,9 @@ namespace RemskladDesktop
             return items;
         }
 
-        public static List<Datum> FetchDisplayData()
+        public static List<Datum> FetchOrigDisplayData()
         {
-            var art = Repository.articlesOfDisplay;
+            var art = Repository.articlesOfDisplayOrig;
             List<Datum> data = Repository.FetchData();
             List<Datum> filtered = new List<Datum>();
             foreach (var article in art)
