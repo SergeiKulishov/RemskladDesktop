@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 
 namespace RemskladDesktop
@@ -21,8 +23,9 @@ namespace RemskladDesktop
             {
                 allArticles.Add(accum);
             }
+
             foreach (var disp in articlesOfDisplayOrig)
-            {
+
                 allArticles.Add(disp);
             }
 
@@ -73,5 +76,41 @@ namespace RemskladDesktop
             }
             return items;
         }
+
+        public static List<Datum> FetchDisplayData()
+        {
+            var art = Repository.articlesOfDisplay;
+            List<Datum> data = Repository.FetchData();
+            List<Datum> filtered = new List<Datum>();
+            foreach (var article in art)
+            {
+                foreach (var item in data)
+                {
+                    if (item.article == article)
+                    {
+                        filtered.Add(item);
+                    }
+                }
+            }
+            return filtered;
+        }
+        public static List<Datum> GetAccumulatorData()
+        {
+            var art = Repository.articlesOfAccums;
+            List<Datum> data = Repository.FetchData();
+            List<Datum> filtered = new List<Datum>();
+            foreach (var article in art)
+            {
+                foreach (var item in data)
+                {
+                    if (item.article == article)
+                    {
+                        filtered.Add(item);
+                    }
+                }
+            }
+            return filtered;
+        }
+
     }
 }

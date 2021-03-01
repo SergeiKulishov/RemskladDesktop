@@ -1,6 +1,7 @@
-﻿using System;
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace RemskladDesktop
 
@@ -16,9 +17,10 @@ namespace RemskladDesktop
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=remskladapi;Trusted_Connection=True;");
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=greatsteve");
-
+           
         }
     }
 }

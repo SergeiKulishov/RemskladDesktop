@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,7 +67,11 @@ namespace RemskladDesktop
 
         private void Button_DispCopy(object sender, RoutedEventArgs e)
         {
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<Datum> phones = Repository.GetAccumulatorData();
         }
 
         private async void UpdateDB(object sender, RoutedEventArgs e)
