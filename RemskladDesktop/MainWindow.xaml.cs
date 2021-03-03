@@ -29,49 +29,28 @@ namespace RemskladDesktop
 
         private void Button_Accums(object sender, RoutedEventArgs e)
         {
-            var art = Repository.articlesOfAccums;
-            List<Datum> data = Repository.FetchData();
-            List<Datum> filtered = new List<Datum>();
-            foreach (var article in art)
-            {
-                foreach (var item in data)
-                {
-                    if (item.article == article)
-                    {
-                        filtered.Add(item);
-                    }
-                }
-            }
+            var filtered = Repository.FetchAccumulatorData();
             ItemList.ItemsSource = filtered.Reverse<Datum>();
 
         }
 
         private void Button_DispOrig(object sender, RoutedEventArgs e)
         {
-            var art = Repository.articlesOfDisplayOrig;
-            List<Datum> data = Repository.FetchData();
-            List<Datum> filtered = new List<Datum>();
-            foreach (var article in art)
-            {
-                foreach (var item in data)
-                {
-                    if (item.article == article)
-                    {
-                        filtered.Add(item);
-                    }
-                }
-            }
+            var filtered = Repository.FetchOrigDisplayData();
             ItemList.ItemsSource = filtered.Reverse<Datum>();
 
         }
 
         private void Button_DispCopy(object sender, RoutedEventArgs e)
         {
+            var filtered = Repository.FetchCopyDisplayData();
+            ItemList.ItemsSource = filtered.Reverse<Datum>();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<Datum> phones = Repository.GetAccumulatorData();
+            List<Datum> phones = Repository.FetchAccumulatorData();
         }
 
         private async void UpdateDB(object sender, RoutedEventArgs e)
@@ -81,13 +60,13 @@ namespace RemskladDesktop
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
                 UpdateButton.Background = Brushes.Green;
-                await Task.Delay(10000);
+                await Task.Delay(5000);
                 UpdateButton.Background = Brushes.White;
             }
             catch (Exception ex)
             {
                 UpdateButton.Background = Brushes.Red;
-                await Task.Delay(10000);
+                await Task.Delay(5000);
                 UpdateButton.Background = Brushes.White;
                 Console.WriteLine(ex.StackTrace);
                 Console.WriteLine("Обновление не удалось");

@@ -10,9 +10,16 @@ namespace RemskladDesktop
 {
     public class Repository
     {
-        public static string[] articlesOfAccums { get; } = { "1010", "1020", "1030", "1050", "1060", "1070", "1080", "1090", "1120", "1128", "1129", "1125" };
-        public static string[] articlesOfDisplayOrig { get; } = { "0601", "0601s", "0602", "0602s", "0601p", "0601sp", "0602p", "0602sp" };
-        public static string[] articlesOfDisplayCopy { get; } = { };
+        public static string[] articlesOfAccums { get; } = { "1010", "1020", "1030", "1050", "1060", "1070", "1080", "1090", "1110", "1120", "1128",
+                                                             "1129", "1125","8895", "8897", "8896" };
+
+        public static string[] articlesOfDisplayOrig { get; } = { "0501o", "0502o", "0601o", "0601R", "0601so", "0602sr", "0601po", "0602pR","0601spo",
+                                                                  "0602spR","0701o","0702oR","0701pR","0702pR","8001","8004R","8004pR","8003pR","8002",
+                                                                  "8005","4200","8006","1111","1112","1113"};
+        
+        public static string[] articlesOfDisplayCopy { get; } = {"0301", "0302", "0501s", "0502s", "0601", "0602", "0601s", "0602s", "0601p", "0602p",
+                                                                 "0601sp", "0602sp","0701","0702","0702p","0702pw","8001c","8004k","8003k","8003p","8002c",
+                                                                 "4200c","8006K","8005c"};
  
         public static IEnumerable<string> GetAllArticlesOfItemWhatWeNeed()
         {
@@ -28,6 +35,13 @@ namespace RemskladDesktop
 
                 allArticles.Add(disp);
             }
+
+            foreach (var disp in articlesOfDisplayCopy)
+            {
+
+                allArticles.Add(disp);
+            }
+
 
             return allArticles;
         }
@@ -94,7 +108,25 @@ namespace RemskladDesktop
             }
             return filtered;
         }
-        public static List<Datum> GetAccumulatorData()
+
+        public static List<Datum> FetchCopyDisplayData()
+        {
+            var art = Repository.articlesOfDisplayCopy;
+            List<Datum> data = Repository.FetchData();
+            List<Datum> filtered = new List<Datum>();
+            foreach (var article in art)
+            {
+                foreach (var item in data)
+                {
+                    if (item.article == article)
+                    {
+                        filtered.Add(item);
+                    }
+                }
+            }
+            return filtered;
+        }
+        public static List<Datum> FetchAccumulatorData()
         {
             var art = Repository.articlesOfAccums;
             List<Datum> data = Repository.FetchData();
