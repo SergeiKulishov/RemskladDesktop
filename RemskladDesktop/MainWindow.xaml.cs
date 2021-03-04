@@ -24,33 +24,29 @@ namespace RemskladDesktop
         public MainWindow()
         {
             InitializeComponent();
-
+            
         }
 
-        private void Button_Accums(object sender, RoutedEventArgs e)
+        private async void CreateDB(object sender, RoutedEventArgs e)
         {
-            var filtered = Repository.FetchAccumulatorData();
-            ItemList.ItemsSource = filtered.Reverse<Datum>();
+            try
+            {
+                Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                Repository.Add(ItemsFromWarehouse);
+                CreateButton.Background = Brushes.Green;
+                await Task.Delay(10000);
+                CreateButton.Background = Brushes.White;
 
-        }
-
-        private void Button_DispOrig(object sender, RoutedEventArgs e)
-        {
-            var filtered = Repository.FetchOrigDisplayData();
-            ItemList.ItemsSource = filtered.Reverse<Datum>();
-
-        }
-
-        private void Button_DispCopy(object sender, RoutedEventArgs e)
-        {
-            var filtered = Repository.FetchCopyDisplayData();
-            ItemList.ItemsSource = filtered.Reverse<Datum>();
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<Datum> phones = Repository.FetchAccumulatorData();
+            }
+            catch (Exception ex)
+            {
+                CreateButton.Background = Brushes.Red;
+                await Task.Delay(10000);
+                CreateButton.Background = Brushes.White;
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine("Обновление не удалось");
+                Console.WriteLine("Updating is fail");
+            }
         }
 
         private async void UpdateDB(object sender, RoutedEventArgs e)
@@ -74,26 +70,32 @@ namespace RemskladDesktop
             }
         }
 
-        private async void CreateDB(object sender, RoutedEventArgs e)
+        private void Button_Accums(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-                Repository.Add(ItemsFromWarehouse);
-                CreateButton.Background = Brushes.Green;
-                await Task.Delay(10000);
-                CreateButton.Background = Brushes.White;
+            var filtered = Repository.FetchAccumulatorData();
+            ItemList.ItemsSource = filtered.Reverse<Datum>();
 
-            }
-            catch (Exception ex)
-            {
-                CreateButton.Background = Brushes.Red;
-                await Task.Delay(10000);
-                CreateButton.Background = Brushes.White;
-                Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Обновление не удалось");
-                Console.WriteLine("Updating is fail");
-            }
+        }
+
+        private void Button_DispOrig(object sender, RoutedEventArgs e)
+        {
+            var filtered = Repository.FetchOrigDisplayData();
+            ItemList.ItemsSource = filtered.Reverse<Datum>();
+
+        }
+
+        private void Button_DispCopy(object sender, RoutedEventArgs e)
+        {
+            var filtered = Repository.FetchCopyDisplayData();
+            ItemList.ItemsSource = filtered.Reverse<Datum>();
+
+        }
+
+        private void Button_MainCameras(object sender, RoutedEventArgs e)
+        {
+            var filtered = Repository.FetchMainCamerasData();
+            ItemList.ItemsSource = filtered.Reverse<Datum>();
+
         }
     }
 }

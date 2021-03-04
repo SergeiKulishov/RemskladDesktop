@@ -20,6 +20,9 @@ namespace RemskladDesktop
         public static string[] articlesOfDisplayCopy { get; } = {"0301", "0302", "0501s", "0502s", "0601", "0602", "0601s", "0602s", "0601p", "0602p",
                                                                  "0601sp", "0602sp","0701","0702","0702p","0702pw","8001c","8004k","8003k","8003p","8002c",
                                                                  "4200c","8006K","8005c"};
+
+        public static string[] articlesOfMainCameras { get; } = {"4304","4604", "4504", "6185", "4704", "4804", "4934", "4914", "4904", "5040", "5030", "4206",
+                                                                 "4206s","4208"};
  
         public static IEnumerable<string> GetAllArticlesOfItemWhatWeNeed()
         {
@@ -38,8 +41,12 @@ namespace RemskladDesktop
 
             foreach (var disp in articlesOfDisplayCopy)
             {
-
                 allArticles.Add(disp);
+            }
+            
+            foreach (var cams in articlesOfMainCameras)
+            {
+                allArticles.Add(cams);
             }
 
 
@@ -126,9 +133,28 @@ namespace RemskladDesktop
             }
             return filtered;
         }
+
         public static List<Datum> FetchAccumulatorData()
         {
             var art = Repository.articlesOfAccums;
+            List<Datum> data = Repository.FetchData();
+            List<Datum> filtered = new List<Datum>();
+            foreach (var article in art)
+            {
+                foreach (var item in data)
+                {
+                    if (item.article == article)
+                    {
+                        filtered.Add(item);
+                    }
+                }
+            }
+            return filtered;
+        }
+
+        public static List<Datum> FetchMainCamerasData()
+        {
+            var art = Repository.articlesOfMainCameras;
             List<Datum> data = Repository.FetchData();
             List<Datum> filtered = new List<Datum>();
             foreach (var article in art)

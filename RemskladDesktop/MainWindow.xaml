@@ -27,11 +27,12 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums"/>
-        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig"/>
-        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy"/>
+        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton"/>
+        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton"/>
+        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton"/>
         <TextBlock Text="RemSklad" TextWrapping="Wrap" Margin="298,10,188,337" FontSize="60" Foreground="#FFB6B6B6"/>
-        <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton"/>
+        <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton"/>
         <Button Content="Создать БД" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton"/>
+        <Button Content="Основные камеры" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton"/>
     </Grid>
 </Window>
