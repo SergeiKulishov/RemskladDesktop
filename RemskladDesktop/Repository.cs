@@ -13,7 +13,7 @@ namespace RemskladDesktop
         public static string[] articlesOfAccums { get; } = { "1010", "1020", "1030", "1050", "1060", "1070", "1080", "1090", "1110", "1120", "1128",
                                                              "1129", "1125","8895", "8897", "8896" };
 
-        public static string[] articlesOfDisplayOrig { get; } = { "0501o", "0502o", "0601o", "0601R", "0601so", "0602sr", "0601po", "0602pR","0601spo",
+        public static string[] articlesOfDisplayOrig { get; } = { "0501o", "0502o", "0601o","0602R", "0601R", "0601so", "0602sr", "0601po", "0602pR","0601spo",
                                                                   "0602spR","0701o","0702oR","0701pR","0702pR","8001","8004R","8004pR","8003pR","8002",
                                                                   "8005","4200","8006","1111","1112","1113"};
         
