@@ -8,12 +8,15 @@
       <e p="RemskladDesktop" t="IncludeRecursive">
         <e p="App.xaml" t="Include" />
         <e p="App.xaml.cs" t="Include" />
+        <e p="ApplicationContext.cs" t="Include" />
         <e p="AssemblyInfo.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ConnectionWithRemonline.cs" t="Include" />
         <e p="Images" t="Include">
           <e p="logo-light.svg" t="Include" />
           <e p="logo.png" t="Include" />
         </e>
+        <e p="Item.cs" t="Include" />
         <e p="logo.png" t="Include" />
         <e p="MainWindow.xaml" t="Include" />
         <e p="MainWindow.xaml.cs" t="Include" />
@@ -21,14 +24,19 @@
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="App.g.cs" t="Include" />
-              <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
               <e p="MainWindow.g.cs" t="Include" />
               <e p="RemskladDesktop.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="Phone.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="PublishProfiles" t="Include">
+            <e p="FolderProfile.pubxml" t="Include" />
+          </e>
+        </e>
         <e p="RemskladDesktop.csproj" t="IncludeRecursive" />
+        <e p="Repository.cs" t="Include" />
+        <e p="ResponceToken.cs" t="Include" />
       </e>
       <e p="RemskladDesktop.sln" t="IncludeFlat" />
     </e>
