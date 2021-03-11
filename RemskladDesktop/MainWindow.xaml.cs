@@ -24,7 +24,38 @@ namespace RemskladDesktop
         public MainWindow()
         {
             InitializeComponent();
+            InitializeUpdateDB();
+            UpdateLoop();
             
+        }
+
+        private async void InitializeUpdateDB()
+        {
+            try
+            {
+                Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                Repository.Update(ItemsFromWarehouse);
+                UpdateButton.Background = Brushes.Green;
+                await Task.Delay(10000);
+                UpdateButton.Background = Brushes.White;
+            }
+            catch (Exception ex)
+            {
+                UpdateButton.Background = Brushes.Red;
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine("Обновление не удалось");
+                Console.WriteLine("Updating is fail");
+            }
+        }
+
+        private async void UpdateLoop()
+        {
+            while (true)
+            {
+                await Task.Delay(600000);
+                InitializeUpdateDB();
+
+            }
         }
 
         private async void CreateDB(object sender, RoutedEventArgs e)
@@ -95,8 +126,10 @@ namespace RemskladDesktop
         {
             var filtered = Repository.FetchMainCamerasData();
             ItemList.ItemsSource = filtered.Reverse<Datum>();
-
         }
+
+
+        
     }
 }
 

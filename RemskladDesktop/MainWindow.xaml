@@ -22,7 +22,7 @@
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
                         <GridViewColumn DisplayMemberBinding="{Binding title}" Width="auto" Header="Наименование"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
+                        <GridViewColumn x:Name="articleColumn" DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
                     </GridView>
                 </ListView.View>
             </ListView>
