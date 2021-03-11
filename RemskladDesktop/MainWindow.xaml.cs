@@ -36,6 +36,7 @@ namespace RemskladDesktop
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
                 UpdateButton.Background = Brushes.Green;
+                WhenUpdated.Text = $"{DateTime.Now}";
                 await Task.Delay(10000);
                 UpdateButton.Background = Brushes.White;
             }
@@ -87,6 +88,8 @@ namespace RemskladDesktop
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
                 UpdateButton.Background = Brushes.Green;
+                WhenUpdated.Text = $"{DateTime.Now}";
+
                 await Task.Delay(5000);
                 UpdateButton.Background = Brushes.White;
             }
@@ -127,7 +130,6 @@ namespace RemskladDesktop
             var filtered = Repository.FetchMainCamerasData();
             ItemList.ItemsSource = filtered.Reverse<Datum>();
         }
-
 
         
     }

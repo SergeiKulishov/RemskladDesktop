@@ -17,12 +17,12 @@
             </LinearGradientBrush>
         </Grid.Background>
         <ScrollViewer Margin="164,114,0,0" >
-            <ListView x:Name="ItemList" FontWeight="Normal" Background="White" Foreground="#FF080808" Height="auto" Width="auto" >
+            <ListView x:Name="ItemList" FontWeight="Normal" Background="White" Foreground="#FF080808" Height="auto" Width="auto"  >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
                         <GridViewColumn DisplayMemberBinding="{Binding title}" Width="auto" Header="Наименование"/>
-                        <GridViewColumn x:Name="articleColumn" DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -34,5 +34,6 @@
         <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton"/>
         <Button Content="Создать БД" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton"/>
         <Button Content="Основные камеры" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,84,0,0" Text="Дата обновления" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" x:Name="WhenUpdated" Foreground="White"/>
     </Grid>
 </Window>
