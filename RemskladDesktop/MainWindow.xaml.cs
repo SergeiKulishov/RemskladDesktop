@@ -24,9 +24,7 @@ namespace RemskladDesktop
         public MainWindow()
         {
             InitializeComponent();
-            InitializeUpdateDB();
             UpdateLoop();
-            
         }
 
         private async void InitializeUpdateDB()
@@ -53,9 +51,8 @@ namespace RemskladDesktop
         {
             while (true)
             {
-                await Task.Delay(600000);
                 InitializeUpdateDB();
-
+                await Task.Delay(1200000);
             }
         }
 

@@ -71,7 +71,7 @@ namespace RemskladDesktop
 
         public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 31){
             List<Item> ListItem = new List<Item>();
-            for (var i = 1; i < pageCount; i++)
+            for (int i = 1; i <= pageCount; i++)
             {
                 string responceMessage = ConnectionWithRemonline.GetPageFromRemonline(await ConnectionWithRemonline.GetToken(), i);
                 Item thing = JsonConvert.DeserializeObject<Item>(responceMessage);
