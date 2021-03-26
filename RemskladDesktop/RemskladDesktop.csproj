@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RemskladMailer\RemskladMailer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="logo.png" />
   </ItemGroup>
 
