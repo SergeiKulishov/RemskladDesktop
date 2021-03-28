@@ -26,9 +26,6 @@ namespace RemskladDesktop
         {
             InitializeComponent();
             UpdateLoop();
-            Mailer.SendEmailAsync(Reporter.Reporter.CreateReport()).GetAwaiter();
-           
-            
         }
 
         private async void InitializeUpdateDB()
@@ -38,7 +35,7 @@ namespace RemskladDesktop
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
                 UpdateButton.Background = Brushes.Green;
-                WhenUpdated.Text = $"{DateTime.Now}";
+                WhenUpdated.Text = $"Обновлено в:\n{DateTime.Now}";
                 await Task.Delay(10000);
                 UpdateButton.Background = Brushes.White;
             }
@@ -89,7 +86,7 @@ namespace RemskladDesktop
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
                 UpdateButton.Background = Brushes.Green;
-                WhenUpdated.Text = $"{DateTime.Now}";
+                WhenUpdated.Text = $"Обновлено в : {DateTime.Now}";
 
                 await Task.Delay(5000);
                 UpdateButton.Background = Brushes.White;
@@ -132,7 +129,13 @@ namespace RemskladDesktop
             ItemList.ItemsSource = filtered.Reverse<Datum>();
         }
 
-        
+        private async void Button_SendReportOnMail(object sender, RoutedEventArgs e)
+        {
+            Reporter.Reporter.DeleteReportAfterSentAsync();
+            await Task.Delay(2000);
+            await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReport());
+            Mailer.SendEmailAsync().GetAwaiter();
+        }
     }
 }
 
