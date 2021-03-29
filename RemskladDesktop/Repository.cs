@@ -170,5 +170,56 @@ namespace RemskladDesktop
             return filtered;
         }
 
+        public static IEnumerable<Datum> FetchItemsWhichNumberLessThanFour(string selection)
+        {
+            var filtered = new List<Datum>();
+            IEnumerable<Datum> items;
+            switch (selection)
+            {
+                case "accums":
+                    items = FetchAccumulatorData();
+                    foreach (var item in items)
+                    {
+                        if(item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "disp-orig":
+                    items = FetchOrigDisplayData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "disp-copy":
+                    items = FetchCopyDisplayData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "main-cameras":
+                    items = FetchMainCamerasData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+            }
+
+            return filtered;
+        }
+
     }
 }

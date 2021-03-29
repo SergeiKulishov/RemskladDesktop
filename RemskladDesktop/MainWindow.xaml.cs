@@ -26,6 +26,7 @@ namespace RemskladDesktop
         {
             InitializeComponent();
             UpdateLoop();
+            ReportLoop();
         }
 
         private async void InitializeUpdateDB()
@@ -54,6 +55,19 @@ namespace RemskladDesktop
             {
                 InitializeUpdateDB();
                 await Task.Delay(1200000);
+            }
+        }
+        
+        public async void ReportLoop()
+        {
+            while (true)
+            {
+                if (DateTime.Now.Hour.ToString() == "16" )
+                {
+                    await SendReportOnMail();
+                    await Task.Delay(new TimeSpan(0, 30, 0));
+                }
+                await Task.Delay(new TimeSpan(0,30,0));
             }
         }
 
@@ -131,10 +145,15 @@ namespace RemskladDesktop
 
         private async void Button_SendReportOnMail(object sender, RoutedEventArgs e)
         {
+          await SendReportOnMail();
+        }
+
+        public async Task SendReportOnMail()
+        {
             Reporter.Reporter.DeleteReportAfterSentAsync();
             await Task.Delay(2000);
             await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReport());
-            Mailer.SendEmailAsync().GetAwaiter();
+            Mailer.SendEmailAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
     }
 }

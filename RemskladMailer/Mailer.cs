@@ -8,16 +8,16 @@ namespace RemskladMailer
 {
     public class Mailer
     {
-        public static async Task SendEmailAsync(string message= "", string reportPath ="C:\\RemskladReports\\testreport.csv")
+        public static async Task SendEmailAsync(string message= "", string reportPath ="C:\\RemskladReports\\Report.csv",string subject ="")
         {
-            MailAddress from = new MailAddress("sigurtholegsson@gmail.com", "Уведомление от Remsklad");
-            MailAddress to = new MailAddress("rewq95kso@yandex.ru");
+            MailAddress from = new MailAddress("remskladgreatsteve@gmail.com", "Уведомление от Remsklad");
+            MailAddress to = new MailAddress("alfimova.irina2015@yandex.ru");
             MailMessage m = new MailMessage(from, to);
-            m.Subject = "Остатки на складе";
+            m.Subject = "Остатки на складе(<4) :" + subject;
             m.Body = message;
             m.Attachments.Add(new Attachment(reportPath));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("sigurtholegsson@gmail.com", "R911e007");
+            smtp.Credentials = new NetworkCredential("remskladgreatsteve@gmail.com", "RemskladDesktop");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
             Console.WriteLine("Письмо отправлено");

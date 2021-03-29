@@ -11,15 +11,15 @@ namespace RemskladDesktop.Reporter
 
         public static string CreateReport()
         {
-            var accums = Repository.FetchAccumulatorData();
-            string msg = "             Аккумуляторы:\n";
+            var accums = Repository.FetchItemsWhichNumberLessThanFour("accums");
+            string msg = "                  Аккумуляторы:\n";
             foreach(var item in accums)
             {
                 msg += $"{item.title};{item.residue}\n";
             }
             msg += "\n";
 
-            var disporig = Repository.FetchOrigDisplayData();
+            var disporig = Repository.FetchItemsWhichNumberLessThanFour("disp-orig");
             msg += "                  Дисплейныйе модули(Оригиналы):\n";
             foreach(var item in disporig)
             {
@@ -27,7 +27,7 @@ namespace RemskladDesktop.Reporter
             }
             msg += "\n";
 
-            var dispcopy = Repository.FetchCopyDisplayData();
+            var dispcopy = Repository.FetchItemsWhichNumberLessThanFour("disp-copy");
             msg += "                  Дисплейныйе модули(Копии):\n";
             foreach (var item in dispcopy)
             {
@@ -35,7 +35,7 @@ namespace RemskladDesktop.Reporter
             }
             msg += "\n";
 
-            var maincameras = Repository.FetchMainCamerasData();
+            var maincameras = Repository.FetchItemsWhichNumberLessThanFour("main-cameras");
             msg += "                   Основные камеры:\n";
             foreach (var item in maincameras)
             {
@@ -46,9 +46,10 @@ namespace RemskladDesktop.Reporter
             return msg;
         }
 
-        public static async Task WriteReportInCSVAsync(string InnerText ="Empty" )
+        public static async Task WriteReportInCSVAsync(string InnerText = "Empty")
         {
-            string writePath = @"C:\RemskladReports\testreport.csv";
+            string writePath = @"C:\RemskladReports\Report.csv";
+
 
             string text = InnerText;
             try
@@ -69,7 +70,7 @@ namespace RemskladDesktop.Reporter
         {
             try
             {
-                string path = @"C:\RemskladReports\testreport.csv";
+                string path = @"C:\RemskladReports\Report.csv";
                 FileInfo fileInf = new FileInfo(path);
                 if (fileInf.Exists)
                 {
