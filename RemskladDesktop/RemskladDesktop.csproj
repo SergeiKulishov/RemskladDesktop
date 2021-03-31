@@ -7,10 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="dereviannyj_tekstura_poverhnost_124937_1920x1080.jpg" />
+    <None Remove="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
+    <None Remove="logo-light.svg" />
     <None Remove="logo.png" />
+    <None Remove="park_osen_derevya_117202_3840x2400.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
@@ -24,7 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="dereviannyj_tekstura_poverhnost_124937_1920x1080.jpg" />
+    <Resource Include="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
+    <Resource Include="logo-light.svg" />
     <Resource Include="logo.png" />
+    <Resource Include="park_osen_derevya_117202_3840x2400.jpg" />
   </ItemGroup>
 
 </Project>
