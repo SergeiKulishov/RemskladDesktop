@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RemskladDesktop" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="RemskladDesktop.MainWindow"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="RemskladDesktop.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Background>
@@ -14,16 +14,15 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Margin="0,0,0,0" Background="Snow">
-        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="12" Height="27"/>
-        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="12" Height="27"/>
-        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="12" Height="27"/>
-        <TextBlock Text="RemSklad" TextWrapping="Wrap" Margin="424,10,62,337" FontSize="60" Foreground="#FF020202" Cursor="None" FontFamily="Segoe UI Semibold"/>
-        <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton" Width="96" Height="22" FontSize="10"/>
-        <Button Content="Создать БД" HorizontalAlignment="Left" Margin="16,9,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton" FontSize="10" Width="89" Height="22"/>
-        <Button Content="Основные камеры" HorizontalAlignment="Left" Margin="9,212,0,0" VerticalAlignment="Top" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton" FontSize="12" Height="27"/>
-        <TextBlock HorizontalAlignment="Left" Margin="16,41,0,0" Text="Дата обновления" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" x:Name="WhenUpdated" Foreground="#FF0A0A0A" Height="36"/>
-        <Button Content="Отправить отчет" HorizontalAlignment="Left" Margin="222,11,0,0" VerticalAlignment="Top" Width="129" Click="Button_SendReportOnMail" Height="22" FontSize="10"/>
-        <ScrollViewer Margin="164,114,0,0" Background="#FFFDFDFD" >
+        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="10" Height="22" FontWeight="Bold"/>
+        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="9,199,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="10" Height="22" FontWeight="Bold"/>
+        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="9,226,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="10" Height="22" FontWeight="Bold"/>
+        <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="16,36,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton" Width="96" Height="22" FontSize="10"/>
+        <Button Content="Создать БД" HorizontalAlignment="Left" Margin="16,9,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton" FontSize="10" Width="96" Height="22"/>
+        <Button Content="Основные камеры" HorizontalAlignment="Left" Margin="9,253,0,0" VerticalAlignment="Top" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton" FontSize="10" Height="22" FontWeight="Bold"/>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="526,52,0,0" Text="Дата обновления" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" x:Name="WhenUpdated" Foreground="#FF0A0A0A" Height="21"/>-->
+        <Button Content="Отправить отчет" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="111" Click="Button_SendReportOnMail" Height="22" FontSize="10" Margin="0,9,10,0"/>
+        <ScrollViewer Margin="164,116,0,0" Background="#FFFDFDFD" BorderBrush="#FF383838" >
             <ListView x:Name="ItemList" FontWeight="Bold" Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" Visibility="Visible">
                 <ListView.View>
                     <GridView>
@@ -34,5 +33,11 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
+        <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="44" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Badged  Margin="0,9,0,0" Height="76" Width="452" HorizontalAlignment="Center">
+            <materialDesign:Badged.Background>
+                <ImageBrush ImageSource="/logo.png"/>
+            </materialDesign:Badged.Background>
+        </materialDesign:Badged>
     </Grid>
 </Window>

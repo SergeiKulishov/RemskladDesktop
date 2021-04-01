@@ -35,17 +35,19 @@ namespace RemskladDesktop
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
+                Brush oldcolor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
-                WhenUpdated.Text = $"Обновлено в:\n{DateTime.Now}";
+                WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
                 await Task.Delay(10000);
-                UpdateButton.Background = Brushes.White;
+                UpdateButton.Background = oldcolor;
             }
             catch (Exception ex)
             {
+                Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Red;
                 Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Обновление не удалось");
-                Console.WriteLine("Updating is fail");
+                await Task.Delay(10000);
+                UpdateButton.Background = oldColor;
             }
         }
 
@@ -77,19 +79,19 @@ namespace RemskladDesktop
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Add(ItemsFromWarehouse);
+                Brush oldColor = CreateButton.Background;
                 CreateButton.Background = Brushes.Green;
                 await Task.Delay(10000);
-                CreateButton.Background = Brushes.White;
+                CreateButton.Background = oldColor;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                Brush oldColor = CreateButton.Background;
                 CreateButton.Background = Brushes.Red;
                 await Task.Delay(10000);
-                CreateButton.Background = Brushes.White;
-                Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Обновление не удалось");
-                Console.WriteLine("Updating is fail");
+                CreateButton.Background = oldColor;
+                
             }
         }
 
@@ -99,20 +101,20 @@ namespace RemskladDesktop
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 Repository.Update(ItemsFromWarehouse);
+                Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
-                WhenUpdated.Text = $"Обновлено в : {DateTime.Now}";
+                WhenUpdated.Content = $"Обновлено в : {DateTime.Now}";
 
                 await Task.Delay(5000);
-                UpdateButton.Background = Brushes.White;
+                UpdateButton.Background = oldColor;
             }
             catch (Exception ex)
             {
+                Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Red;
                 await Task.Delay(5000);
-                UpdateButton.Background = Brushes.White;
+                UpdateButton.Background = oldColor;
                 Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Обновление не удалось");
-                Console.WriteLine("Updating is fail");
             }
         }
 
@@ -155,6 +157,8 @@ namespace RemskladDesktop
             await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReport());
             Mailer.SendEmailAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
+
+        
     }
 }
 

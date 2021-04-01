@@ -11,7 +11,6 @@
     <None Remove="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
     <None Remove="logo-light.svg" />
     <None Remove="logo.png" />
-    <None Remove="park_osen_derevya_117202_3840x2400.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +34,6 @@
     <Resource Include="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
     <Resource Include="logo-light.svg" />
     <Resource Include="logo.png" />
-    <Resource Include="park_osen_derevya_117202_3840x2400.jpg" />
   </ItemGroup>
 
 </Project>
