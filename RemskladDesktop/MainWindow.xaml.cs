@@ -103,7 +103,7 @@ namespace RemskladDesktop
                 Repository.Update(ItemsFromWarehouse);
                 Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
-                WhenUpdated.Content = $"Обновлено в : {DateTime.Now}";
+                WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
 
                 await Task.Delay(5000);
                 UpdateButton.Background = oldColor;

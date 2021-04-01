@@ -13,7 +13,7 @@
             <GradientStop Color="White" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
-    <Grid Margin="0,0,0,0" Background="Snow">
+    <Grid Margin="0,0,0,0" Background="WhiteSmoke">
         <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="10" Height="22" FontWeight="Bold"/>
         <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="9,199,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="10" Height="22" FontWeight="Bold"/>
         <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="9,226,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="10" Height="22" FontWeight="Bold"/>
@@ -27,14 +27,14 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="auto" Header="Наименование" />
+                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="330" Header="Наименование" />
                         <GridViewColumn DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="44" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
-        <materialDesign:Badged  Margin="0,9,0,0" Height="76" Width="452" HorizontalAlignment="Center">
+        <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="29" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Badged  Margin="0,9,0,0" Height="69" Width="396" HorizontalAlignment="Center">
             <materialDesign:Badged.Background>
                 <ImageBrush ImageSource="/logo.png"/>
             </materialDesign:Badged.Background>

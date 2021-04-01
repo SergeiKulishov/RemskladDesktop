@@ -4,13 +4,17 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>AnyConv.com__LOGO.ico</ApplicationIcon>
+    <PackageIcon></PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="dereviannyj_tekstura_poverhnost_124937_1920x1080.jpg" />
-    <None Remove="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
     <None Remove="logo-light.svg" />
     <None Remove="logo.png" />
+    <None Include="..\..\..\..\Pictures\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,8 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="dereviannyj_tekstura_poverhnost_124937_1920x1080.jpg" />
-    <Resource Include="doski_chrnyy_ryad_tekstura_fon_derevo_55220_2560x1080.jpg" />
     <Resource Include="logo-light.svg" />
     <Resource Include="logo.png" />
   </ItemGroup>
