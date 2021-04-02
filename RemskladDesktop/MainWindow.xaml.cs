@@ -26,7 +26,7 @@ namespace RemskladDesktop
         {
             InitializeComponent();
             UpdateLoop();
-            ReportLoop();
+            //ReportLoop();
         }
 
         private async void InitializeUpdateDB()
@@ -152,9 +152,9 @@ namespace RemskladDesktop
 
         public async Task SendReportOnMail()
         {
-            Reporter.Reporter.DeleteReportAfterSentAsync();
+            Reporter.Reporter.DeleteCSVReportAfterSentAsync();
             await Task.Delay(2000);
-            await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReport());
+            await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReportCSV());
             Mailer.SendEmailAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
 
