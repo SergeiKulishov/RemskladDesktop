@@ -152,10 +152,13 @@ namespace RemskladDesktop
 
         public async Task SendReportOnMail()
         {
-            Reporter.Reporter.DeleteCSVReportAfterSentAsync();
+            //Reporter.Reporter.DeleteCSVReportAfterSentAsync();
+            Reporter.Reporter.DeleteHTMLReportAfterSentAsync();
             await Task.Delay(2000);
-            await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReportCSV());
-            Mailer.SendEmailAsync(subject: DateTime.Now.ToString()).GetAwaiter();
+            // await Reporter.Reporter.WriteReportInCSVAsync(Reporter.Reporter.CreateReportCSV());
+            await Reporter.Reporter.WriteReportInHTMLAsync(Reporter.Reporter.CreateReportHTML());
+            //Mailer.SendEmailWithCSVReportAsync(subject: DateTime.Now.ToString()).GetAwaiter();
+            Mailer.SendEmailWithHTMLReportAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
 
         

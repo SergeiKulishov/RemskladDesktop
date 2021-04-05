@@ -69,7 +69,7 @@ namespace RemskladDesktop
             
         }
 
-        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 31){
+        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 29){
             List<Item> ListItem = new List<Item>();
             for (int i = 1; i <= pageCount; i++)
             {
