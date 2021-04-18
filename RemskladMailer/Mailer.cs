@@ -11,7 +11,7 @@ namespace RemskladMailer
         public static async Task SendEmailWithCSVReportAsync(string message= "", string reportPath ="C:\\RemskladReports\\Report.csv",string subject ="")
         {
             MailAddress from = new MailAddress("remskladgreatsteve@gmail.com", "Уведомление от Remsklad");
-            //MailAddress to = new MailAddress("alfimova.irina2015@yandex.ru");
+            //MailAddress to = new MailAddress("alfimova.irina2015@yandex.ru"); 
             MailAddress to = new MailAddress("rewq95kso@yandex.ru");
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Остатки на складе(<4) :" + subject;
@@ -27,8 +27,8 @@ namespace RemskladMailer
         public static async Task SendEmailWithHTMLReportAsync(string message = "", string reportPath = "C:\\RemskladReports\\Report.html", string subject = "")
         {
             MailAddress from = new MailAddress("remskladgreatsteve@gmail.com", "Уведомление от Remsklad");
-            MailAddress to = new MailAddress("alfimova.irina2015@yandex.ru");
-            //MailAddress to = new MailAddress("rewq95kso@yandex.ru");
+            //MailAddress to = new MailAddress("alfimova.irina2015@yandex.ru");
+            MailAddress to = new MailAddress("rewq95kso@yandex.ru");
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Остатки на складе(<4) :" + subject;
             m.Body = message;
