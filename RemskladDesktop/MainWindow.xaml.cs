@@ -38,6 +38,14 @@ namespace RemskladDesktop
                 Brush oldcolor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
+
+                var CashInfo = await ConnectionWithRemonline.GetCashboxInfo();
+                string CurrentCash = String.Format("{0:C}", CashInfo[28384].balance);
+                Cash.Content = $"  {CurrentCash}";
+
+                string CurrentTerminal = String.Format("{0:C}", CashInfo[28895].balance);
+                Terminal.Content = $"  {CurrentTerminal}";
+
                 await Task.Delay(10000);
                 UpdateButton.Background = oldcolor;
             }

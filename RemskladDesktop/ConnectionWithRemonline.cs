@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using WebApplicationTEST.Cashbox;
 
 namespace RemskladDesktop
 {
@@ -104,6 +105,24 @@ namespace RemskladDesktop
                 }
             }
             return ItemsfromWarehouse;
+        }
+        
+        public static async Task<Dictionary<int, Cashbox>> GetCashboxInfo()
+        {
+            string token = await GetToken(); 
+            string url = $"https://api.remonline.ru/cashbox/?token={token}";
+            using  (var webClient = new WebClient())
+            {
+                string response = await webClient.DownloadStringTaskAsync(url);
+
+                var Boxes = Newtonsoft.Json.JsonConvert.DeserializeObject<CashboxesFromRemOnline>(response);
+                Dictionary<int, Cashbox> GSCashboxes = new Dictionary<int, Cashbox>();
+                foreach (var box in Boxes.data)
+                {
+                    GSCashboxes.Add(box.id, box);
+                }
+                return GSCashboxes;
+            }
         }
 
     }

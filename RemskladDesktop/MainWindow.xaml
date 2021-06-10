@@ -34,6 +34,10 @@
             </ListView>
         </ScrollViewer>
         <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="29" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Card HorizontalAlignment="Right" Margin="0,40,18,0" VerticalAlignment="Top" Height="14" Width="96" x:Name="Cash"  Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Card HorizontalAlignment="Right" Margin="0,64,18,0" VerticalAlignment="Top" Height="14" Width="96" x:Name="Terminal"  Background="White" FontSize="10" FontWeight="Bold"/>
+
+
         <materialDesign:Badged  Margin="0,9,0,0" Height="69" Width="396" HorizontalAlignment="Center">
             <materialDesign:Badged.Background>
                 <ImageBrush ImageSource="/logo.png"/>
