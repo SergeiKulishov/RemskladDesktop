@@ -14,6 +14,17 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Margin="0,0,0,0" Background="WhiteSmoke">
+        <Button
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            HorizontalAlignment="Left" 
+            Margin="10,300,0,0" 
+            VerticalAlignment="Top"
+            Width="149"
+            Height="22"
+            FontSize="10"
+            
+            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+            Content="_DARK" />
         <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="10" Height="22" FontWeight="Bold"/>
         <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="9,199,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="10" Height="22" FontWeight="Bold"/>
         <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="9,226,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="10" Height="22" FontWeight="Bold"/>
@@ -33,9 +44,11 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
+        <materialDesign:PackIcon HorizontalAlignment="Right" Kind="CashRegister" Margin="0,62,105,0" />
+        <materialDesign:PackIcon HorizontalAlignment="Right" Kind="Cash100" Margin="0,38,105,0" />
         <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="29" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
-        <materialDesign:Card HorizontalAlignment="Right" Margin="0,40,18,0" VerticalAlignment="Top" Height="14" Width="96" x:Name="Cash"  Background="White" FontSize="10" FontWeight="Bold"/>
-        <materialDesign:Card HorizontalAlignment="Right" Margin="0,64,18,0" VerticalAlignment="Top" Height="14" Width="96" x:Name="Terminal"  Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Card HorizontalAlignment="Right" Margin="0,40,18,0" VerticalAlignment="Top" Height="14" Width="82" x:Name="Cash"  Background="White" FontSize="10" FontWeight="Bold"/>
+        <materialDesign:Card HorizontalAlignment="Right" Margin="0,63,18,0" VerticalAlignment="Top" Height="14" Width="82" x:Name="Terminal"  Background="White" FontSize="10" FontWeight="Bold"/>
 
 
         <materialDesign:Badged  Margin="0,9,0,0" Height="69" Width="396" HorizontalAlignment="Center">

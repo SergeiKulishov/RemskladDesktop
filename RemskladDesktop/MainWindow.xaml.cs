@@ -38,13 +38,7 @@ namespace RemskladDesktop
                 Brush oldcolor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
-
-                var CashInfo = await ConnectionWithRemonline.GetCashboxInfo();
-                string CurrentCash = String.Format("{0:C}", CashInfo[28384].balance);
-                Cash.Content = $"  {CurrentCash}";
-
-                string CurrentTerminal = String.Format("{0:C}", CashInfo[28895].balance);
-                Terminal.Content = $"  {CurrentTerminal}";
+                UpdateCashBoxes();
 
                 await Task.Delay(10000);
                 UpdateButton.Background = oldcolor;
@@ -112,7 +106,7 @@ namespace RemskladDesktop
                 Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
-
+                UpdateCashBoxes();
                 await Task.Delay(5000);
                 UpdateButton.Background = oldColor;
             }
@@ -169,6 +163,15 @@ namespace RemskladDesktop
             Mailer.SendEmailWithHTMLReportAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
 
+        private async void UpdateCashBoxes()
+        {
+            var CashInfo = await ConnectionWithRemonline.GetCashboxInfo();
+            string CurrentCash = String.Format("{0:C}", CashInfo[28384].balance);
+            Cash.Content = $"  {CurrentCash}";
+
+            string CurrentTerminal = String.Format("{0:C}", CashInfo[28895].balance);
+            Terminal.Content = $"  {CurrentTerminal}";
+        }
         
     }
 }
