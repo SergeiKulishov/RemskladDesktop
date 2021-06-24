@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RemskladMailer;
+using RemskladDesktop.Cashbox;
+using RemskladDesktop.Orders;
+using Newtonsoft.Json;
 
 namespace RemskladDesktop
 {
@@ -34,7 +37,9 @@ namespace RemskladDesktop
             try
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
                 Repository.Update(ItemsFromWarehouse);
+                Repository.UpdateOrders(ordersFromRemonline);
                 Brush oldcolor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
@@ -80,7 +85,9 @@ namespace RemskladDesktop
             try
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
                 Repository.Add(ItemsFromWarehouse);
+                Repository.AddOrders(ordersFromRemonline);
                 Brush oldColor = CreateButton.Background;
                 CreateButton.Background = Brushes.Green;
                 await Task.Delay(10000);
@@ -172,7 +179,57 @@ namespace RemskladDesktop
             string CurrentTerminal = String.Format("{0:C}", CashInfo[28895].balance);
             Terminal.Content = $"  {CurrentTerminal}";
         }
-        
+
+        private void Warehouse_Click(object sender, RoutedEventArgs e)
+        {
+            WarehousePanel.Visibility = Visibility.Visible;
+            ScrollItemList.Visibility = Visibility.Visible;
+            OrdersPanel.Visibility = Visibility.Hidden;
+            ScrollOrderList.Visibility = Visibility.Hidden;
+
+        }
+
+        private void Orders_Click(object sender, RoutedEventArgs e)
+        {
+            WarehousePanel.Visibility = Visibility.Hidden;
+            ScrollItemList.Visibility = Visibility.Hidden;
+            OrdersPanel.Visibility = Visibility.Visible;
+            ScrollOrderList.Visibility = Visibility.Visible;
+        }
+
+        private async void NewOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var ord = await ConnectionWithRemonline.GetOrders();
+            var orderRoot = JsonConvert.DeserializeObject<Orders.Root>(ord);
+            List<Order> listorder = orderRoot.data;
+            OrderList.ItemsSource = listorder.Where(x => x.status.group == 1);
+
+        }
+
+        private async void ExecutionOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ord = await ConnectionWithRemonline.GetOrders();
+            var orderRoot = JsonConvert.DeserializeObject<Orders.Root>(ord);
+            List<Order> listorder = orderRoot.data;
+            OrderList.ItemsSource = listorder.Where(x => x.status.group == 2);
+        }
+
+        private async void DelayedOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ord = await ConnectionWithRemonline.GetOrders();
+            var orderRoot = JsonConvert.DeserializeObject<Orders.Root>(ord);
+            List<Order> listorder = orderRoot.data;
+            OrderList.ItemsSource = listorder.Where(x => x.status.group == 3);
+        }
+
+        private async void FinishedOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ord = await ConnectionWithRemonline.GetOrders();
+            var orderRoot = JsonConvert.DeserializeObject<Orders.Root>(ord);
+            List<Order> listorder = orderRoot.data;
+            OrderList.ItemsSource = listorder.Where(x => x.status.group == 4);
+        }
     }
 }
 

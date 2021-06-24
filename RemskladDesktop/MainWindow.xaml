@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RemskladDesktop" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="RemskladDesktop.MainWindow"
         mc:Ignorable="d"
-        Title="RemSklad" Height="450" Width="800">
+        Title="RemSklad" Height="541" Width="949">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="Black"/>
@@ -14,27 +14,48 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Margin="0,0,0,0" Background="WhiteSmoke">
-        <Button
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            HorizontalAlignment="Left" 
-            Margin="10,300,0,0" 
-            VerticalAlignment="Top"
-            Width="149"
-            Height="22"
-            FontSize="10"
-            
-            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-            Content="_DARK" />
-        <Button Content="Аккумуляторы" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="10" Height="22" FontWeight="Bold"/>
-        <Button Content="Дисплеи(Оригинал)" HorizontalAlignment="Left" Margin="9,199,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="10" Height="22" FontWeight="Bold"/>
-        <Button Content="Дисплеи(Копия)" HorizontalAlignment="Left" Margin="9,226,0,0" VerticalAlignment="Top" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="10" Height="22" FontWeight="Bold"/>
+        <StackPanel Margin="0,174,790,140" VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="WarehousePanel">
+            <Button Content="Аккумуляторы" Width="149" Click="Button_Accums" x:Name="DispAccumsButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="Дисплеи(Копия)" Width="149" Click="Button_DispCopy" x:Name="DispCopyButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="Дисплеи(Оригинал)" Width="149" Click="Button_DispOrig" x:Name="DispOrigButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="Основные камеры" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+        </StackPanel>
+        <StackPanel Margin="0,174,790,140" VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="OrdersPanel" Visibility="Hidden">
+            <Button Content="Новые" Width="149" Click="NewOrdersButton_Click" x:Name="NewOrdersButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="На исполнении" Width="149" Click="ExecutionOrdersButton_Click" x:Name="ExecutionOrdersButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="Отложенные" Width="149" Click="DelayedOrdersButton_Click" x:Name="DelayedOrdersButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+            <Button Content="Готовые" Width="149" Click="FinishedOrdersButton_Click" x:Name="FinishedOrdersButton" FontSize="10" Height="22" FontWeight="Bold" Margin="5"/>
+        </StackPanel>
         <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="16,36,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton" Width="96" Height="22" FontSize="10"/>
         <Button Content="Создать БД" HorizontalAlignment="Left" Margin="16,9,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton" FontSize="10" Width="96" Height="22"/>
-        <Button Content="Основные камеры" HorizontalAlignment="Left" Margin="9,253,0,0" VerticalAlignment="Top" Width="149" Click="Button_MainCameras" x:Name="MainCamerasButton" FontSize="10" Height="22" FontWeight="Bold"/>
+
         <!--<TextBlock HorizontalAlignment="Left" Margin="526,52,0,0" Text="Дата обновления" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" x:Name="WhenUpdated" Foreground="#FF0A0A0A" Height="21"/>-->
         <Button Content="Отправить отчет" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="111" Click="Button_SendReportOnMail" Height="22" FontSize="10" Margin="0,9,10,0"/>
-        <ScrollViewer Margin="164,116,0,0" Background="#FFFDFDFD" BorderBrush="#FF383838" >
-            <ListView x:Name="ItemList" FontWeight="Bold" Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" Visibility="Visible">
+
+        <Button
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            materialDesign:ButtonAssist.CornerRadius="10 0 0 10"
+            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="9,116,0,0" Width="74"
+            Content="Склад"
+            FontSize="12"
+            x:Name="Warehouse"
+            Click="Warehouse_Click"
+        />
+        <Button
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            materialDesign:ButtonAssist.CornerRadius="0 10 10 0"
+            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="84,116,0,0" Width="74"
+            Content="Заказы"
+            FontSize="12"
+            x:Name="Orders"
+            Click="Orders_Click"
+        />
+        <ScrollViewer x:Name="ScrollItemList" Margin="164,116,0,0" Background="#FFFDFDFD" BorderBrush="#FF383838">
+            <ListView x:Name="ItemList" FontWeight="Bold" Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
@@ -44,6 +65,21 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
+        <ScrollViewer x:Name="ScrollOrderList" Margin="164,116,0,0" Background="#FFFDFDFD" BorderBrush="#FF383838" Visibility="Hidden">
+            <ListView x:Name="OrderList" FontWeight="Bold" Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding model}" Width="auto" Header="Устройство" />
+                        <GridViewColumn DisplayMemberBinding="{Binding status.name}" Width="auto" Header="Исполнитель"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding client.name}" Width="auto" Header="Клиент"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding malfunction}" Width="auto" Header="Неисправность"/>
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        
         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="CashRegister" Margin="0,62,105,0" />
         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="Cash100" Margin="0,38,105,0" />
         <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="29" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
@@ -56,5 +92,7 @@
                 <ImageBrush ImageSource="/logo.png"/>
             </materialDesign:Badged.Background>
         </materialDesign:Badged>
+
+
     </Grid>
 </Window>

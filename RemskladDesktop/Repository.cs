@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RemskladDesktop.Orders;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 
 namespace RemskladDesktop
 
@@ -81,6 +82,7 @@ namespace RemskladDesktop
             }
         }
 
+        
         public static List<Datum> FetchData()
         {
             List<Datum> items;
@@ -220,6 +222,48 @@ namespace RemskladDesktop
 
             return filtered;
         }
+
+
+        /////////////////////////////////////////////////////////////////////////////////
+
+        public static void AddOrders(IEnumerable<Order> ListOfOrders)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Orders.AddRangeAsync(ListOfOrders);
+                db.SaveChanges();
+                Console.WriteLine("Заказы успешно добавлены");
+            }
+        }
+
+        public static void UpdateOrders(IEnumerable<Order> ListOfOrders)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Orders.UpdateRange(ListOfOrders);
+                db.SaveChanges();
+                Console.WriteLine("Заказы успешно обновлены");
+            }
+        }
+
+        public static IEnumerable<Order> FetchOrders()
+        {
+            IEnumerable<Order> orders;
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                // получаем объекты из бд и выводим на консоль
+                orders = db.Orders.ToList();
+                Console.WriteLine("Список объектов:");
+                foreach (var i in orders)
+                {
+                    Console.WriteLine($"{i}");
+                }
+            }
+            return orders;
+
+        }
+
 
     }
 }
