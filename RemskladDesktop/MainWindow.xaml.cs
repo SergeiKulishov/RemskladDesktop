@@ -195,6 +195,7 @@ namespace RemskladDesktop
             ScrollItemList.Visibility = Visibility.Hidden;
             OrdersPanel.Visibility = Visibility.Visible;
             ScrollOrderList.Visibility = Visibility.Visible;
+            
         }
 
         private async void NewOrdersButton_Click(object sender, RoutedEventArgs e)

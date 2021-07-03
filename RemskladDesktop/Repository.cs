@@ -182,7 +182,7 @@ namespace RemskladDesktop
                     items = FetchAccumulatorData();
                     foreach (var item in items)
                     {
-                        if(item.residue <= 3)
+                        if (item.residue <= 3)
                         {
                             filtered.Add(item);
                         }
@@ -254,11 +254,12 @@ namespace RemskladDesktop
             {
                 // получаем объекты из бд и выводим на консоль
                 orders = db.Orders.ToList();
-                Console.WriteLine("Список объектов:");
-                foreach (var i in orders)
-                {
-                    Console.WriteLine($"{i}");
-                }
+                //Console.WriteLine("Список объектов:");
+                //foreach (var i in orders)
+                //{
+                //    Console.WriteLine($"{i}");
+                //}
+
             }
             return orders;
 

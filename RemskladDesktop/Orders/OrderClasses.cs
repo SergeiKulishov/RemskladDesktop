@@ -9,6 +9,7 @@ namespace RemskladDesktop.Orders
     public class FinanceTransaction
     {
         [Key]
+        public int id { get; set; }
         public int pk { get; set; }
     }
 

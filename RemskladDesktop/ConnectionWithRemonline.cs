@@ -76,7 +76,6 @@ namespace RemskladDesktop
         
             foreach(var s in ListofItems)
             {
-                // Console.WriteLine(s.page);
                 foreach(var p in s.data)
                 {  
                     try
@@ -88,7 +87,6 @@ namespace RemskladDesktop
                             }  
                             
                         }
-                    // Console.WriteLine(p.title);
                     }
                     catch (System.Exception)
                     {   if(p.article == null){

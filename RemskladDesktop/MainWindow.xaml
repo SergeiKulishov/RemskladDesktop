@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RemskladDesktop" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="RemskladDesktop.MainWindow"
         mc:Ignorable="d"
-        Title="RemSklad" Height="541" Width="949">
+        Title="RemSklad" Height="541" Width="1000">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="Black"/>
@@ -28,16 +28,13 @@
         </StackPanel>
         <Button Content="Обновить БД" HorizontalAlignment="Left" Margin="16,36,0,0" VerticalAlignment="Top" Click="UpdateDB" x:Name="UpdateButton" Width="96" Height="22" FontSize="10"/>
         <Button Content="Создать БД" HorizontalAlignment="Left" Margin="16,9,0,0" VerticalAlignment="Top" Click="CreateDB" x:Name="CreateButton" FontSize="10" Width="96" Height="22"/>
-
-        <!--<TextBlock HorizontalAlignment="Left" Margin="526,52,0,0" Text="Дата обновления" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" x:Name="WhenUpdated" Foreground="#FF0A0A0A" Height="21"/>-->
         <Button Content="Отправить отчет" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="111" Click="Button_SendReportOnMail" Height="22" FontSize="10" Margin="0,9,10,0"/>
-
         <Button
             Style="{StaticResource MaterialDesignRaisedButton}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             materialDesign:ButtonAssist.CornerRadius="10 0 0 10"
-            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="9,116,0,0" Width="74"
+            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="6,128,0,0" Width="74"
             Content="Склад"
             FontSize="12"
             x:Name="Warehouse"
@@ -48,14 +45,14 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             materialDesign:ButtonAssist.CornerRadius="0 10 10 0"
-            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="84,116,0,0" Width="74"
+            ToolTip="MaterialDesignRaisedButton with Round Corners" Margin="80,128,0,0" Width="74"
             Content="Заказы"
             FontSize="12"
             x:Name="Orders"
             Click="Orders_Click"
         />
         <ScrollViewer x:Name="ScrollItemList" Margin="164,116,0,0" Background="#FFFDFDFD" BorderBrush="#FF383838">
-            <ListView x:Name="ItemList" FontWeight="Bold" Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" >
+            <ListView x:Name="ItemList" FontWeight="Bold"  Foreground="Black" Height="auto" Width="auto" Margin="0,0,20,0" FontSize="12" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
@@ -73,26 +70,19 @@
                         <GridViewColumn DisplayMemberBinding="{Binding status.name}" Width="auto" Header="Исполнитель"/>
                         <GridViewColumn DisplayMemberBinding="{Binding client.name}" Width="auto" Header="Клиент"/>
                         <GridViewColumn DisplayMemberBinding="{Binding malfunction}" Width="auto" Header="Неисправность"/>
-
-
                     </GridView>
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        
         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="CashRegister" Margin="0,62,105,0" />
         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="Cash100" Margin="0,38,105,0" />
         <materialDesign:Card HorizontalAlignment="Left" Margin="16,63,0,0" VerticalAlignment="Top" Height="29" Width="96" x:Name="WhenUpdated" Background="White" FontSize="10" FontWeight="Bold"/>
         <materialDesign:Card HorizontalAlignment="Right" Margin="0,40,18,0" VerticalAlignment="Top" Height="14" Width="82" x:Name="Cash"  Background="White" FontSize="10" FontWeight="Bold"/>
         <materialDesign:Card HorizontalAlignment="Right" Margin="0,63,18,0" VerticalAlignment="Top" Height="14" Width="82" x:Name="Terminal"  Background="White" FontSize="10" FontWeight="Bold"/>
-
-
         <materialDesign:Badged  Margin="0,9,0,0" Height="69" Width="396" HorizontalAlignment="Center">
             <materialDesign:Badged.Background>
                 <ImageBrush ImageSource="/logo.png"/>
             </materialDesign:Badged.Background>
         </materialDesign:Badged>
-
-
     </Grid>
 </Window>
