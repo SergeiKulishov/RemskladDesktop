@@ -54,21 +54,21 @@ namespace RemskladDesktop
             return allArticles;
         }
 
-        public static void Add(Dictionary<string, Datum> ItemsFromWarehouse)
+        public static async Task Add(Dictionary<string, Datum> ItemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
                 {
                     // добавляем их в бд
-                    db.Datums.Add(kvp.Value);
+                    await db.Datums.AddAsync(kvp.Value);
                 }
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 Console.WriteLine("Объекты успешно добавлены");
             }
         }
             
-        public static void Update(Dictionary<string, Datum> ItemsFromWarehouse)
+        public static async Task Update(Dictionary<string, Datum> ItemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -77,7 +77,7 @@ namespace RemskladDesktop
                     //обновляем их в бд
                     db.Datums.Update(kvp.Value);
                 }
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 Console.WriteLine("Объекты успешно обновлены");
             }
         }

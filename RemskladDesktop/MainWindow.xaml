@@ -56,7 +56,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding article}" Width="auto" Header="Артикул"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="330" Header="Наименование" />
+                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="330" Header="Наименование"/>
                         <GridViewColumn DisplayMemberBinding="{Binding residue}" Width="auto" Header="Остаток на складе"/>
                     </GridView>
                 </ListView.View>
@@ -67,7 +67,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding model}" Width="auto" Header="Устройство" />
-                        <GridViewColumn DisplayMemberBinding="{Binding status.name}" Width="auto" Header="Исполнитель"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding status.name}" Width="auto" Header="Статус"/>
                         <GridViewColumn DisplayMemberBinding="{Binding client.name}" Width="auto" Header="Клиент"/>
                         <GridViewColumn DisplayMemberBinding="{Binding malfunction}" Width="auto" Header="Неисправность"/>
                     </GridView>

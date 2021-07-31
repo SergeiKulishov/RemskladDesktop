@@ -37,13 +37,13 @@ namespace RemskladDesktop
             try
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-                List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
-                Repository.Update(ItemsFromWarehouse);
-                Repository.UpdateOrders(ordersFromRemonline);
+                //List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
+                await Repository.Update(ItemsFromWarehouse);
+                //Repository.UpdateOrders(ordersFromRemonline);
                 Brush oldcolor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
-                UpdateCashBoxes();
+                await UpdateCashBoxes();
 
                 await Task.Delay(10000);
                 UpdateButton.Background = oldcolor;
@@ -85,9 +85,9 @@ namespace RemskladDesktop
             try
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-                List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
-                Repository.Add(ItemsFromWarehouse);
-                Repository.AddOrders(ordersFromRemonline);
+                //List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
+                await Repository.Add(ItemsFromWarehouse);
+               // Repository.AddOrders(ordersFromRemonline);
                 Brush oldColor = CreateButton.Background;
                 CreateButton.Background = Brushes.Green;
                 await Task.Delay(10000);
@@ -109,11 +109,11 @@ namespace RemskladDesktop
             try
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-                Repository.Update(ItemsFromWarehouse);
+                await Repository.Update(ItemsFromWarehouse);
                 Brush oldColor = UpdateButton.Background;
                 UpdateButton.Background = Brushes.Green;
                 WhenUpdated.Content = $"Обновлено в:\n{DateTime.Now}";
-                UpdateCashBoxes();
+                await UpdateCashBoxes();
                 await Task.Delay(5000);
                 UpdateButton.Background = oldColor;
             }
@@ -170,7 +170,7 @@ namespace RemskladDesktop
             Mailer.SendEmailWithHTMLReportAsync(subject: DateTime.Now.ToString()).GetAwaiter();
         }
 
-        private async void UpdateCashBoxes()
+        private async Task UpdateCashBoxes()
         {
             var CashInfo = await ConnectionWithRemonline.GetCashboxInfo();
             string CurrentCash = String.Format("{0:C}", CashInfo[28384].balance);
